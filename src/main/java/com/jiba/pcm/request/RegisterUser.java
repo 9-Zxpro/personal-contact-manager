@@ -1,10 +1,7 @@
 package com.jiba.pcm.request;
 
 import com.jiba.pcm.annotations.UniqueUsername;
-import jakarta.validation.constraints.AssertTrue;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Getter
@@ -15,14 +12,14 @@ import lombok.*;
 @ToString
 public class RegisterUser {
     @NotBlank(message = "Username is required")
-    @Size(min = 3, message = "Min 3 character is required")
+    @Pattern(regexp = "^[a-zA-Z0-9_]{3,15}$", message = "Username must be alphanumeric and/or underscore and between 3 to 15 characters")
     @UniqueUsername(message = "Username already exist")
     private String username;
     @NotBlank(message = "First name should not blank")
     private String firstName;
     @NotBlank(message = "Last name should not blank")
     private String lastName;
-    @NotBlank(message = "Phone enter phone number")
+    @NotBlank(message = "Please enter valid phone number")
     @Size(min = 10, max = 13, message = "Please! Enter correct phone number")
     private String phoneNumber;
     @Email(message = "Please! Enter a valid email")

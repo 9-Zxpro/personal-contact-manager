@@ -31,7 +31,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public boolean geUserByUserName(String userName) {
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public boolean isUserByUserName(String userName) {
         User user = userRepository.findByUsername(userName);
         return user!=null;
     }
@@ -50,6 +55,22 @@ public class UserService implements IUserService {
         userUpdate.setEmailVerified(user.isEmailVerified());
         userUpdate.setEnabled(user.isEnabled());
         return userRepository.save(userUpdate);
+    }
+
+    @Override
+    public User getUserByEmailOrUsername(String usernameOrEmail) {
+        boolean isEmail = usernameOrEmail.contains("@") && usernameOrEmail.contains(".");
+        User user = null;
+        try {
+            if(isEmail) {
+                user = userRepository.findByEmail(usernameOrEmail);
+            } else  {
+                user = userRepository.findByUsername(usernameOrEmail);
+            }
+        } catch (Exception e) {
+            return null;
+        }
+        return user;
     }
 
     @Override

@@ -8,8 +8,10 @@ import java.util.Optional;
 public interface IUserService {
     User saveUser(User user);
     User getUserById(String id);
-    boolean geUserByUserName(String userName);
+    User getUserByUsername(String username);
+    boolean isUserByUserName(String userName);
     User updateUser(User user);
+    User getUserByEmailOrUsername(String usernameOrEmail);
     void deleteUser(String id);
     boolean isUserByEmail(String email);
     List<User> getAllUsers();

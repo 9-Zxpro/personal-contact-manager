@@ -21,7 +21,7 @@ public class UniqueUsernameValidator implements ConstraintValidator<UniqueUserna
         if (username == null) {
             return false;
         }
-        boolean isUsernameExists = userService.geUserByUserName(username);
+        boolean isUsernameExists = userService.isUserByUserName(username);
         if (isUsernameExists) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate("Username already exists").addConstraintViolation();

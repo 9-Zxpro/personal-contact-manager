@@ -1,10 +1,14 @@
 package com.jiba.pcm.model;
 
 import com.jiba.pcm.enums.Provider;
+import com.jiba.pcm.enums.Roles;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -42,6 +46,11 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     @Builder.Default
     private Provider provider = Provider.SELF;
+
+    @Enumerated(value = EnumType.STRING)
+    @Builder.Default
+    private Set<Roles> role = new HashSet<>(Arrays.asList(Roles.USER));
+
     private String providerId;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
