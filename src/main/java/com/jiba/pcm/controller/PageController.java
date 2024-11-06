@@ -1,18 +1,12 @@
 package com.jiba.pcm.controller;
 
-import com.jiba.pcm.config.Helper;
 import com.jiba.pcm.config.UserDetailsServiceImp;
 import com.jiba.pcm.model.User;
-import com.jiba.pcm.repository.UserRepository;
 import com.jiba.pcm.request.LoggingUser;
 import com.jiba.pcm.request.RegisterUser;
 import com.jiba.pcm.service.user.IUserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
